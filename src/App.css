@@ -1,0 +1,28 @@
+body {
+  background-color: thistle;
+  font-size: 100%;
+}
+
+main, header {
+  text-align: center;
+}
+
+header a:nth-child(1) {
+  margin-right: 12px;
+}
+
+header a {
+ text-decoration: none;
+ color: black;
+ font-size: 2rem;
+ font-weight: 700;
+}
+
+h1, p {
+  display: block;
+}
+
+.link_actived {
+  text-decoration: none;
+  color: blueviolet;
+}
