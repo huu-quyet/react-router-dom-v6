@@ -6,8 +6,9 @@ import Layout from '@app/components/core/Layout'
 import Home from '@app/pages/Home'
 import Products from '@app/pages/Products'
 import ErrorPage from '@app/components/core/Error'
-import ProductDetail, { loader as productDeailLoader } from '@app/pages/Products/ProductDetail'
+import ProductDetail, { loader as productDetailLoader } from '@app/pages/Products/ProductDetail'
 import EditProduct from '@app/pages/Products/EditProduct'
+import NewProduct, { action as createNewProductAction } from '@app/pages/Products/NewProduct'
 
 /**
  * Another way create routes from Elements like version 5
@@ -58,6 +59,7 @@ import EditProduct from '@app/pages/Products/EditProduct'
  * Loader() funtion would be called right when we start navigating to the page. So not after the page component has been rendered, but before we actually go there.
  * Data return from loader() would be transitted to the element which defined in the route.
  * But if the loader() funtion delayed by the request take a long time, the page component would be not redered until the loader() to be finished
+ * @property action : action are called when the app send a non-get submission to your route
  */
 const routes = createBrowserRouter([
   {
@@ -71,7 +73,7 @@ const routes = createBrowserRouter([
       },
       {
         path: 'products',
-        id: "products",
+        id: 'products',
         loader: async () => {
           // Call api
           // const response = await fetch('http://localhost:8080/events')
@@ -113,7 +115,7 @@ const routes = createBrowserRouter([
           {
             path: ':productId',
             id: 'product-detail',
-            loader: productDeailLoader,
+            loader: productDetailLoader,
             children: [
               {
                 index: true,
@@ -124,6 +126,11 @@ const routes = createBrowserRouter([
                 element: <EditProduct />
               }
             ]
+          },
+          {
+            path: 'create',
+            element: <NewProduct />,
+            action: createNewProductAction
           }
         ]
       }
