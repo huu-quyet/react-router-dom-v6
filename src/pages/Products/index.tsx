@@ -1,4 +1,4 @@
-import { Link, useLoaderData, useNavigation } from 'react-router-dom'
+import { Link, useLoaderData, useNavigation, useRouteLoaderData } from 'react-router-dom'
 
 // const PRODUCT = [
 //   { id: 'p1', title: 'product 1' },
@@ -16,7 +16,8 @@ import { Link, useLoaderData, useNavigation } from 'react-router-dom'
  */
 
 const Products: React.FC = () => {
-  const products = useLoaderData() as unknown as {id: string, title: string}[];
+  // const products = useLoaderData() as unknown as {id: string, title: string}[];
+  const products = useRouteLoaderData("products") as unknown as {id: string, title: string}[];
 
   return (
     <>

@@ -1,4 +1,4 @@
-import { Link, useParams } from "react-router-dom"
+import { Link, LoaderFunction, LoaderFunctionArgs, useParams } from "react-router-dom"
 
 /**
  * Back to previous page with relative path
@@ -8,7 +8,6 @@ import { Link, useParams } from "react-router-dom"
 
 const ProductDetail: React.FC = () =>  {
   const param = useParams();
-  console.log(param)
   return <>
     <p>{param.productId}</p>
     <Link to={".."} relative="path">Back</Link>
@@ -16,3 +15,11 @@ const ProductDetail: React.FC = () =>  {
 }
 
 export default ProductDetail
+
+export const loader : LoaderFunction = ({ request, params }) => {
+  console.log(request);
+  console.log(params);
+  return new Response("Success", {
+    status: 200,
+  });
+}

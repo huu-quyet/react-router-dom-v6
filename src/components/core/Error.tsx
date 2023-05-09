@@ -1,6 +1,31 @@
-import { NavLink } from 'react-router-dom'
+import { NavLink, useRouteError } from 'react-router-dom'
+
+type Error<T> = {
+  data: T;
+  status: number;
+  statusText: string;
+  internal: boolean;
+  error?: {
+    message: string;
+    stack: string;
+  }
+}
+
+/**
+ * @useRouteError hook : return error Route which could be a loader/action error or a render error.
+ */
 
 const ErrorPage: React.FC = () => {
+  const error = useRouteError() as Error<{
+    message: string
+  }>;
+
+  let errorMessage: string | undefined = error?.data?.message;
+
+  if(error.status === 404) {
+    errorMessage = error?.error?.message
+  }
+
   return (
     <>
       <header>
@@ -13,7 +38,7 @@ const ErrorPage: React.FC = () => {
       </header>
       <main>
         <h1>An error occured !</h1>
-        <p>Can not get this page</p>
+        <p>{errorMessage}</p>
       </main>
     </>
   )
