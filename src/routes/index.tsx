@@ -4,7 +4,7 @@ import homeRoutes from './home'
 import productRoutes from './products'
 import Layout from '@app/components/core/Layout'
 import Home from '@app/pages/Home'
-import Products from '@app/pages/Products'
+import Products, { loader } from '@app/pages/Products'
 import ErrorPage from '@app/components/core/Error'
 import ProductDetail, { loader as productDetailLoader } from '@app/pages/Products/ProductDetail'
 import EditProduct from '@app/pages/Products/EditProduct'
@@ -74,39 +74,7 @@ const routes = createBrowserRouter([
       {
         path: 'products',
         id: 'products',
-        loader: async () => {
-          // Call api
-          // const response = await fetch('http://localhost:8080/events')
-          /**
-           * Custom responses when Error route happened
-           */
-          // throw json(
-          //   { message : "Could not fetch events" },
-          //   { status: 500 }
-          // )
-
-          //   if (!response.ok) {
-          //     // throw new Response(
-          //     //   'Could not fetch events',
-          //     //   {
-          //     //     status: 500
-          //     //   }
-          //     // )
-          //     throw json(
-          //       { message : "Could not fetch events" },
-          //       { status: 500 }
-          //     )
-          //   } else {
-          //     const resData = await response.json()
-          //     return resData.events
-          //   }
-
-          return [
-            { id: 'p1', title: 'product 1' },
-            { id: 'p2', title: 'product 2' },
-            { id: 'p3', title: 'product 3' }
-          ]
-        },
+        loader: loader,
         children: [
           {
             index: true,
